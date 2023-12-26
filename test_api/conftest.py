@@ -1,4 +1,5 @@
 from typing import Generator
+
 import pytest
 from dotenv import load_dotenv
 
@@ -8,10 +9,10 @@ load_dotenv("test_api/test.env")
 from fastapi.testclient import TestClient
 from sqlalchemy import orm
 
+from api import app
 from app import models as m
 from app import schema as s
 
-from api import app
 from .test_data import TestData
 
 

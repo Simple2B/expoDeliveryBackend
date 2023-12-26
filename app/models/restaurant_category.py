@@ -9,6 +9,10 @@ restaurant_categories = sa.Table(
         "restaurant_id", sa.ForeignKey("restaurants.id"), primary_key=True
     ),  # noqa E501
     sa.Column(
-        "category_id", sa.ForeignKey("category_id.id"), primary_key=True
+        "category_id", sa.ForeignKey("categories.id"), primary_key=True
     ),  # noqa E501
 )
+
+
+class RestaurantCategory(db.Model):
+    __tablename__ = "restaurant_categories"

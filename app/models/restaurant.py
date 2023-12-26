@@ -50,7 +50,9 @@ class Restaurant(db.Model, ModelMixin):
     )  # noqa E501
 
     categories: orm.Mapped[list["Category"]] = orm.relationship(
-        "Category", secondary=restaurant_categories, viewonly=True
+        "Category",
+        secondary=restaurant_categories,
+        viewonly=True,
     )
 
     @property

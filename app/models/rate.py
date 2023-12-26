@@ -2,9 +2,9 @@ import sqlalchemy as sa
 from sqlalchemy import orm
 
 from app.database import db
-from app.utility import generate_uuid
+from .utils import generate_uuid
 
-from restaurant import Restaurant
+from .restaurant import Restaurant
 
 
 class Rate(db.Model):
@@ -34,7 +34,10 @@ class Rate(db.Model):
     sa.CheckConstraint("rate >= 1 AND rate <= 5")
 
     restaurant: orm.Mapped[Restaurant] = orm.relationship(
-        "Job", foreign_keys=[restaurant_id], viewonly=True, backref="rates"
+        "Restaurant",
+        foreign_keys=[restaurant_id],
+        viewonly=True,
+        backref="rates",  # noqa E501
     )
 
     def __repr__(self):

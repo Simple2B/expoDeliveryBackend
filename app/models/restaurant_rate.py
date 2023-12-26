@@ -2,7 +2,7 @@ import sqlalchemy as sa
 
 from app.database import db
 
-users_rates = sa.Table(
+restaurant_rates = sa.Table(
     "restaurant_rates",
     db.Model.metadata,
     sa.Column(
@@ -10,3 +10,7 @@ users_rates = sa.Table(
     ),  # noqa E501
     sa.Column("rate_id", sa.ForeignKey("rates.id"), primary_key=True),
 )
+
+
+class RestaurantRate(db.Model):
+    __tablename__ = "restaurant_rates"

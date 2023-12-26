@@ -31,7 +31,9 @@ class User(db.Model, UserMixin, ModelMixin):
         unique=True,
         nullable=False,
     )
-    password_hash: orm.Mapped[str] = orm.mapped_column(sa.String(256), default="")
+    password_hash: orm.Mapped[str] = orm.mapped_column(
+        sa.String(256), default=""
+    )  # noqa E501
     activated: orm.Mapped[bool] = orm.mapped_column(sa.Boolean, default=False)
     created_at: orm.Mapped[datetime] = orm.mapped_column(
         sa.DateTime,
@@ -45,7 +47,9 @@ class User(db.Model, UserMixin, ModelMixin):
         sa.String(64),
         default=gen_password_reset_id,
     )
-    is_deleted: orm.Mapped[bool] = orm.mapped_column(sa.Boolean, server_default=sa.false())
+    is_deleted: orm.Mapped[bool] = orm.mapped_column(
+        sa.Boolean, server_default=sa.false()
+    )
 
     @property
     def password(self):

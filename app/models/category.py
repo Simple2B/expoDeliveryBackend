@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING
 from datetime import datetime
 
 import sqlalchemy as sa
@@ -5,7 +6,12 @@ from sqlalchemy import orm
 
 from app.database import db
 from .utils import ModelMixin, generate_uuid
+from .restaurant_category import restaurant_categories
 from app import schema as s
+
+if TYPE_CHECKING:
+    from .restaurant import Restaurant
+
 
 DEFAULT_IMAGE = "../images/categories/default.png"
 
@@ -32,8 +38,18 @@ class Category(db.Model, ModelMixin):
         sa.Boolean, server_default=sa.false()
     )  # noqa E501
 
+    restaurants: orm.Mapped[list["Restaurant"]] = orm.relationship(
+        "Restaurant",
+        secondary=restaurant_categories,
+        viewonly=True,
+    )
+
     def __repr__(self):
         return f"<{self.id}: {self.username},{self.email}>"
+
+    @property
+    def count(self):
+        return len(self.restaurants)
 
     @property
     def json(self):
