@@ -1,4 +1,7 @@
 {
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
   "python.terminal.activateEnvironment": true,
   "files.watcherExclude": {
     "**/.git/objects/**": true,
@@ -7,21 +10,25 @@
     "**/.venv/*/**": true
   },
   "cSpell.words": [
+    "backref",
     "dotenv",
     "fastapi",
-    "flowbite",
-    "jsonify",
+    "httpx",
+    "ilike",
+    "mmyy",
+    "payplus",
     "pydantic",
-    "pytest",
+    "sqladmin",
     "sqlalchemy",
-    "tailwindcss",
-    "werkzeug",
-    "wsgi",
-    "wtforms"
+    "starlette",
+    "uselist",
+    "viewonly"
   ],
-  "python.testing.pytestEnabled": true,
-  "python.testing.unittestEnabled": false,
+  "python.formatting.provider": "none",
+  "editor.formatOnSave": true,
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "editor.defaultFormatter": null,
+  "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy",
 }
