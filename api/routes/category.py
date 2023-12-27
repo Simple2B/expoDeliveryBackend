@@ -9,7 +9,7 @@ import app.schema as s
 from api.dependency import get_db
 from app.logger import log
 
-category_router = APIRouter(prefix="/category", tags=["Categories"])
+category_router = APIRouter(prefix="/categories", tags=["Categories"])
 
 
 @category_router.get(
@@ -34,7 +34,7 @@ def get_category(
     return category
 
 
-@category_router.get("/", status_code=status.HTTP_200_OK, response_model=s.CategoryList)
+@category_router.get("", status_code=status.HTTP_200_OK, response_model=s.CategoryList)
 def get_categories(
     db: Session = Depends(get_db),
 ):
@@ -45,7 +45,9 @@ def get_categories(
     return categories
 
 
-@category_router.get("/", status_code=status.HTTP_200_OK, response_model=s.FilterList)
+@category_router.get(
+    "/filters", status_code=status.HTTP_200_OK, response_model=s.FilterList
+)
 def get_filters(
     db: Session = Depends(get_db),
 ):

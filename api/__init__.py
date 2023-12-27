@@ -3,12 +3,14 @@ from fastapi.responses import RedirectResponse
 
 from config import config
 
-from .utils import custom_generate_unique_id
+from .utility import custom_generate_unique_id
 from .routes import router
 
 CFG = config()
 
-app = FastAPI(version=CFG.VERSION, generate_unique_id_function=custom_generate_unique_id)
+app = FastAPI(
+    version=CFG.VERSION, generate_unique_id_function=custom_generate_unique_id
+)
 app.include_router(router)
 
 

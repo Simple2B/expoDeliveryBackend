@@ -19,35 +19,25 @@ class Restaurant(db.Model, ModelMixin):
     __tablename__ = "restaurants"
 
     id: orm.Mapped[int] = orm.mapped_column(primary_key=True)
-    uuid: orm.Mapped[str] = orm.mapped_column(
-        sa.String(36), default=generate_uuid
-    )  # noqa E501
+    uuid: orm.Mapped[str] = orm.mapped_column(sa.String(36), default=generate_uuid)
     name: orm.Mapped[str] = orm.mapped_column(
         sa.String(64), unique=True, nullable=False
-    )  # noqa E501
-    image: orm.Mapped[str] = orm.mapped_column(
-        sa.String(256), default=DEFAULT_IMAGE
-    )  # noqa E501
+    )
+    image: orm.Mapped[str] = orm.mapped_column(sa.String(256), default=DEFAULT_IMAGE)
     created_at: orm.Mapped[datetime] = orm.mapped_column(
         sa.DateTime,
         default=datetime.utcnow,
     )
 
-    description: orm.Mapped[str] = orm.mapped_column(
-        sa.String(512), nullable=False
-    )  # noqa E501
+    description: orm.Mapped[str] = orm.mapped_column(sa.String(512), nullable=False)
 
     is_deleted: orm.Mapped[bool] = orm.mapped_column(
         sa.Boolean, server_default=sa.false()
     )
 
-    duration: orm.Mapped[str] = orm.mapped_column(
-        sa.String(256), nullable=False
-    )  # noqa E501
+    duration: orm.Mapped[str] = orm.mapped_column(sa.String(256), nullable=False)
 
-    location: orm.Mapped[str] = orm.mapped_column(
-        sa.String(256), nullable=False
-    )  # noqa E501
+    location: orm.Mapped[str] = orm.mapped_column(sa.String(256), nullable=False)
 
     categories: orm.Mapped[list["Category"]] = orm.relationship(
         "Category",
