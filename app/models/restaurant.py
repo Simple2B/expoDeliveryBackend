@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast, Sequence
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -39,23 +39,26 @@ class Restaurant(db.Model, ModelMixin):
 
     location: orm.Mapped[str] = orm.mapped_column(sa.String(256), nullable=False)
 
-    categories: orm.Mapped[list["Category"]] = orm.relationship(
+    tags: orm.Mapped[list["Category"]] = orm.relationship(
         "Category",
         secondary=restaurant_categories,
         viewonly=True,
     )
 
     @property
-    def distance(self):
-        pass
+    def distance(self) -> float:
+        # hardcoded for now
+        return 0.0
 
     @property
-    def rating(self):
-        pass
+    def rate(self) -> float:
+        return sum(rate.rate for rate in cast(Sequence, self.ratings)) / len(
+            cast(Sequence, self.ratings)
+        )
 
     @property
-    def rates(self):
-        pass
+    def rates(self) -> int:
+        return len(cast(Sequence, self.ratings))
 
     def __repr__(self):
         return f"<{self.id}: {self.name}, {self.location}>"

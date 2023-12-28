@@ -37,7 +37,7 @@ class Rate(db.Model):
         "Restaurant",
         foreign_keys=[restaurant_id],
         viewonly=True,
-        backref="rates",  # noqa E501
+        backref="ratings",
     )
 
     def __repr__(self):

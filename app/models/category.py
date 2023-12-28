@@ -53,5 +53,5 @@ class Category(db.Model, ModelMixin):
 
     @property
     def json(self):
-        u = s.User.model_validate(self)
+        u = s.Category.model_validate(self)
         return u.model_dump_json()

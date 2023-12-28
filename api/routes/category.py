@@ -42,17 +42,6 @@ def get_categories(
 
     categories: Sequence[m.Category] = db.scalars(select(m.Category)).all()
 
-    return categories
-
-
-@category_router.get(
-    "/filters", status_code=status.HTTP_200_OK, response_model=s.FilterList
-)
-def get_filters(
-    db: Session = Depends(get_db),
-):
-    log(log.INFO, "Get all filters")
-
-    filters: Sequence[m.Category] = db.scalars(select(m.Category)).all()
-
-    return filters
+    return s.CategoryList(
+        categories=[s.Category.model_validate(category) for category in categories]
+    )
