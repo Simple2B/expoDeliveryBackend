@@ -53,6 +53,6 @@ def test_get_restaurant(client: TestClient, headers: dict[str, str], test_data: 
     response = client.get("/api/restaurants/panels", headers=headers)
     assert response.status_code == status.HTTP_200_OK
 
-    resp_panels: s.PanelRestaurantList = s.PanelRestaurantList.from_orm(response.json())
+    resp_panels: s.PanelRestaurantList = s.PanelRestaurantList.model_validate(response.json())
     assert resp_panels
     assert len(resp_panels.panels) == len(restaurants)
