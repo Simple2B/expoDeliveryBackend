@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "flask.app"
+name = "Delivery Server"
 version = "0.0.4"
-description = ""
-authors = ["denys <denysburimov@gmail.com>"]
+description = "backend for Delivery portal"
+authors = ["simple2b <simple2b.info@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -22,18 +22,15 @@ uvicorn = "^0.23.2"
 python-jose = "^3.3.0"
 python-multipart = "^0.0.6"
 pydantic-settings = "^2.0.3"
-mypy = "^1.8.0"
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.1.1"
 
 [tool.poetry.group.dev.dependencies]
 faker = "^18.3.1"
 httpx = "^0.25.0"
-mypy = "^1.5.1"
 types-flask-migrate = "^4.0.0.6"
 types-python-jose = "^3.3.4.8"
 ruff = "^0.1.8"
+mypy = "^1.8.0"
+pytest = "^7.4.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -51,6 +48,7 @@ testpaths = ["test_flask", "test_api"]
 ignore_missing_imports = true
 check_untyped_defs = true
 files = ["api/**/*.py", "app/**/*.py", "test_api/**/*.py", "test_flask/**/*.py"]
+exclude = ["migrations/**/*.py"]
 
 [tool.ruff]
 exclude = [

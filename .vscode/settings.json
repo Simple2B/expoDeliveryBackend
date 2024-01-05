@@ -10,6 +10,7 @@
   },
   "cSpell.words": [
     "backref",
+    "DEVEL",
     "dotenv",
     "fastapi",
     "httpx",

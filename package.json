@@ -1,7 +1,7 @@
 {
-  "name": "static",
+  "name": "delivery",
   "version": "0.0.1",
-  "description": "",
+  "description": "test app based on expo",
   "main": "index.js",
   "scripts": {
     "js-watch": "webpack --config webpack.dev.js --watch",
@@ -10,8 +10,8 @@
     "css-watch": "tailwindcss -i ./src/styles.css -o ./app/static/css/styles.css --watch",
     "build": "yarn css && yarn js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "simple2b",
+  "license": "MIT",
   "dependencies": {
     "flowbite": "^1.6.4",
     "tailwindcss": "^3.2.7"
