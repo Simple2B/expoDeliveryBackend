@@ -127,7 +127,7 @@ jobs:
           key: ${{ env.DEPLOY_SSH_KEY }}
           port: ${{ env.DEPLOY_SSH_PORT }}
           script: |
-            cd ~/app &&
+            cd ~/simple2b_delivery &&
             mv docker-compose.staging.yaml docker-compose.yaml &&
             docker compose pull &&
             docker compose up -d &&
