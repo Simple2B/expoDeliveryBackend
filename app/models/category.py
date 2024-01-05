@@ -20,23 +20,15 @@ class Category(db.Model, ModelMixin):
     __tablename__ = "categories"
 
     id: orm.Mapped[int] = orm.mapped_column(primary_key=True)
-    uuid: orm.Mapped[str] = orm.mapped_column(
-        sa.String(36), default=generate_uuid
-    )  # noqa E501
-    name: orm.Mapped[str] = orm.mapped_column(
-        sa.String(64), unique=True, nullable=False
-    )  # noqa E501
-    image: orm.Mapped[str] = orm.mapped_column(
-        sa.String(256), default=DEFAULT_IMAGE
-    )  # noqa E501
+    uuid: orm.Mapped[str] = orm.mapped_column(sa.String(36), default=generate_uuid)  # noqa E501
+    name: orm.Mapped[str] = orm.mapped_column(sa.String(64), unique=True, nullable=False)  # noqa E501
+    image: orm.Mapped[str] = orm.mapped_column(sa.String(256), default=DEFAULT_IMAGE)  # noqa E501
     created_at: orm.Mapped[datetime] = orm.mapped_column(
         sa.DateTime,
         default=datetime.utcnow,
     )
 
-    is_deleted: orm.Mapped[bool] = orm.mapped_column(
-        sa.Boolean, server_default=sa.false()
-    )  # noqa E501
+    is_deleted: orm.Mapped[bool] = orm.mapped_column(sa.Boolean, server_default=sa.false())  # noqa E501
 
     restaurants: orm.Mapped[list["Restaurant"]] = orm.relationship(
         "Restaurant",

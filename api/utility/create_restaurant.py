@@ -72,15 +72,9 @@ def create_restaurants(db: Session):
         db.add(db_restaurant)
 
         tags: Sequence[str] = cast(Sequence[str], restaurant["tags"])
-        categories: Sequence[m.Category] = db.scalars(
-            select(m.Category).where(m.Category.name.in_(tags))
-        ).all()
+        categories: Sequence[m.Category] = db.scalars(select(m.Category).where(m.Category.name.in_(tags))).all()
         for category in categories:
-            db.add(
-                m.RestaurantCategory(
-                    restaurant_id=db_restaurant.id, category_id=category.id
-                )
-            )
+            db.add(m.RestaurantCategory(restaurant_id=db_restaurant.id, category_id=category.id))
 
         db.commit()
         log(log.INFO, f"Restaurant {restaurant} created")

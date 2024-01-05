@@ -17,9 +17,7 @@ CFG = config("testing")
 
 
 @pytest.mark.skipif(not CFG.IS_API, reason="API is not enabled")
-def test_get_categories(
-    client: TestClient, headers: dict[str, str], test_data: TestData, db: Session
-):
+def test_get_categories(client: TestClient, headers: dict[str, str], test_data: TestData, db: Session):
     create_categories(db=db)
     response = client.get("/api/categories", headers=headers)
 

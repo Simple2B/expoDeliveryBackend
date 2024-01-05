@@ -10,12 +10,8 @@ from app.logger import log
 RATES_NUMBER = 50
 
 
-def create_restaurant_rates(
-    db: Session, restaurant_id: int, rates_number: int = RATES_NUMBER
-):
-    restaurant: m.Restaurant | None = db.scalar(
-        select(m.Restaurant).where(m.Restaurant.id == restaurant_id)
-    )
+def create_restaurant_rates(db: Session, restaurant_id: int, rates_number: int = RATES_NUMBER):
+    restaurant: m.Restaurant | None = db.scalar(select(m.Restaurant).where(m.Restaurant.id == restaurant_id))
     if not restaurant:
         log(log.INFO, "Restaurant [%s] wasn`t found", restaurant_id)
         return

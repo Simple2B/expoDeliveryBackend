@@ -16,18 +16,14 @@ class Rate(db.Model):
         unique=True,
         default=generate_uuid,
     )
-    user_id: orm.Mapped[int] = orm.mapped_column(
-        sa.ForeignKey("users.id"), nullable=False
-    )
+    user_id: orm.Mapped[int] = orm.mapped_column(sa.ForeignKey("users.id"), nullable=False)
 
     # rate based on order_id
     # order_id: orm.Mapped[int] = orm.mapped_column(
     #     sa.ForeignKey("orders.id"), nullable=False
     # )
 
-    restaurant_id: orm.Mapped[int] = orm.mapped_column(
-        sa.ForeignKey("restaurants.id"), nullable=False
-    )
+    restaurant_id: orm.Mapped[int] = orm.mapped_column(sa.ForeignKey("restaurants.id"), nullable=False)
     rate: orm.Mapped[int] = orm.mapped_column(sa.Integer, nullable=False)
 
     # rate range limit

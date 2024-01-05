@@ -23,6 +23,11 @@ services:
       ALCHEMICAL_DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-passwd}@db:5432/db
     depends_on:
       - db
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.delivery.rule=Host(`delivery.simple2b.net`)'
+      - 'traefik.http.routers.delivery.tls=true'
+      - 'traefik.http.routers.delivery.tls.certresolver=myresolver'
 
   api:
     image: simple2b/simple2b_delivery:0.1
@@ -34,10 +39,11 @@ services:
       ALCHEMICAL_DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-passwd}@db:5432/db
     depends_on:
       - db
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.api_delivery.rule=Host(`api.delivery.simple2b.net`)'
+      - 'traefik.http.routers.api_delivery.tls=true'
+      - 'traefik.http.routers.api_delivery.tls.certresolver=myresolver'
 
 volumes:
   db_data:
-
-networks:
-  default:
-    name: simple2b-delivery_default

@@ -20,9 +20,7 @@ class Restaurant(db.Model, ModelMixin):
 
     id: orm.Mapped[int] = orm.mapped_column(primary_key=True)
     uuid: orm.Mapped[str] = orm.mapped_column(sa.String(36), default=generate_uuid)
-    name: orm.Mapped[str] = orm.mapped_column(
-        sa.String(64), unique=True, nullable=False
-    )
+    name: orm.Mapped[str] = orm.mapped_column(sa.String(64), unique=True, nullable=False)
     image: orm.Mapped[str] = orm.mapped_column(sa.String(256), default=DEFAULT_IMAGE)
     created_at: orm.Mapped[datetime] = orm.mapped_column(
         sa.DateTime,
@@ -31,9 +29,7 @@ class Restaurant(db.Model, ModelMixin):
 
     description: orm.Mapped[str] = orm.mapped_column(sa.String(512), nullable=False)
 
-    is_deleted: orm.Mapped[bool] = orm.mapped_column(
-        sa.Boolean, server_default=sa.false()
-    )
+    is_deleted: orm.Mapped[bool] = orm.mapped_column(sa.Boolean, server_default=sa.false())
 
     duration: orm.Mapped[str] = orm.mapped_column(sa.String(256), nullable=False)
 
@@ -52,9 +48,7 @@ class Restaurant(db.Model, ModelMixin):
 
     @property
     def rate(self) -> float:
-        return sum(rate.rate for rate in cast(Sequence, self.ratings)) / len(
-            cast(Sequence, self.ratings)
-        )
+        return sum(rate.rate for rate in cast(Sequence, self.ratings)) / len(cast(Sequence, self.ratings))
 
     @property
     def rates(self) -> int:

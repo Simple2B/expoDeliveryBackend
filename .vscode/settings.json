@@ -27,8 +27,8 @@
   "python.formatting.provider": "none",
   "editor.formatOnSave": true,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "editor.defaultFormatter": null,
-  "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy",
+  "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy"
 }

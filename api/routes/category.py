@@ -12,18 +12,14 @@ from app.logger import log
 category_router = APIRouter(prefix="/categories", tags=["Categories"])
 
 
-@category_router.get(
-    "/{category_id}", status_code=status.HTTP_200_OK, response_model=s.Category
-)
+@category_router.get("/{category_id}", status_code=status.HTTP_200_OK, response_model=s.Category)
 def get_category(
     category_id: int,
     db: Session = Depends(get_db),
 ):
     log(log.INFO, f"get_category: {category_id}")
 
-    category: m.Category | None = db.scalar(
-        select(m.Category).where(m.Category.id == category_id)
-    )
+    category: m.Category | None = db.scalar(select(m.Category).where(m.Category.id == category_id))
     if not category:
         log(log.INFO, "Category [%s] wasn`t found", category_id)
         raise HTTPException(
@@ -42,6 +38,4 @@ def get_categories(
 
     categories: Sequence[m.Category] = db.scalars(select(m.Category)).all()
 
-    return s.CategoryList(
-        categories=[s.Category.model_validate(category) for category in categories]
-    )
+    return s.CategoryList(categories=[s.Category.model_validate(category) for category in categories])
