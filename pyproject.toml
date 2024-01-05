@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Delivery Server"
-version = "0.0.5"
+version = "0.0.6"
 description = "backend for Delivery portal"
 authors = ["simple2b <simple2b.info@gmail.com>"]
 
