@@ -47,6 +47,9 @@ class User(db.Model, UserMixin, ModelMixin):
     )
     is_deleted: orm.Mapped[bool] = orm.mapped_column(sa.Boolean, server_default=sa.false())
 
+    google_openid_key: orm.Mapped[str] = orm.mapped_column(sa.String(64), nullable=True)
+    apple_uid: orm.Mapped[str] = orm.mapped_column(sa.String(64), nullable=True)
+
     @property
     def password(self):
         return self.password_hash
@@ -54,6 +57,14 @@ class User(db.Model, UserMixin, ModelMixin):
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
+
+    @property
+    def is_auth_by_google(self) -> bool:
+        return bool(self.google_openid_key)
+
+    @property
+    def is_auth_by_apple(self) -> bool:
+        return bool(self.apple_uid)
 
     @classmethod
     def authenticate(
