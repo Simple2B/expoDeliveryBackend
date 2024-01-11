@@ -24,5 +24,5 @@ def test_who_am_i(
     user: m.User = db.scalar(select(m.User))
     response = client.get("api/whoami/user", headers=headers)
     assert response.status_code == status.HTTP_200_OK
-    resp_obj: s.WhoAmIOut = s.WhoAmIOut.parse_obj(response.json())
+    resp_obj: s.WhoAmIOut = s.WhoAmIOut.model_validate(response.json())
     assert resp_obj.unique_id == user.unique_id

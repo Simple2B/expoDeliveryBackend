@@ -30,9 +30,9 @@ def test_google_auth(db, client: TestClient, test_data: TestData):
         first_name="John",
         photo_url="https://link_to_file/file.jpeg",
         uid="some-rand-uid",
-    ).dict()
+    ).model_dump()
 
     response = client.post("api/auth/google", json=request_data)
     assert response.status_code == status.HTTP_200_OK
-    resp_obj = s.Token.parse_obj(response.json())
+    resp_obj = s.Token.model_validate(response.json())
     assert resp_obj.access_token
