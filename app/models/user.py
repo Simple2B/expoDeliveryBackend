@@ -85,7 +85,6 @@ class User(db.Model, UserMixin, ModelMixin):
             log(log.WARNING, "user:[%s] not found", user_id)
         elif check_password_hash(user.password, password):
             return user
-        return None
 
     def reset_password(self):
         self.password_hash = ""
