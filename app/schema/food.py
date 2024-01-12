@@ -19,7 +19,7 @@ class BaseFood(BaseModel):
 
 
 class Food(BaseFood):
-    restaurants: list[Restaurant]
+    restaurant: Restaurant
     tags: list[Category]
 
 

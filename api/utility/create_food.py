@@ -43,8 +43,8 @@ def create_foods_for_restaurant(db: Session, restaurant_id: int):
 
             db.add(db_food)
             db.flush()
-            for _ in range(random.randint(1, 3)):
-                category = random.choice(categories)
+            db_categories = set(random.choices(categories, k=random.randint(1, 3)))
+            for category in db_categories:
                 db_food_category = m.FoodTags(
                     food_id=db_food.id,
                     category_id=category.id,

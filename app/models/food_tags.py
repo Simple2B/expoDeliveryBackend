@@ -11,4 +11,4 @@ food_tags = sa.Table(
 
 
 class FoodTags(db.Model):
-    __tablename__ = "food_tags"
+    __tablename__ = "food_tags" 
