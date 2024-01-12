@@ -63,6 +63,7 @@ def create_restaurants(db: Session):
             continue
 
         db_restaurant = m.Restaurant(
+            id=restaurant["id"],
             name=restaurant["name"],
             image=restaurant["img"],
             description="",

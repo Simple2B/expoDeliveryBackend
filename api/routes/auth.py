@@ -46,44 +46,38 @@ def google_auth(
     password = "*"
 
     if not user:
-        username = data.first_name
-        if not username:
-            if not data.display_name:
-                data.display_name = data.email.split("@")[0]
-            names = data.display_name.split(" ")
-            username = names[0]
-
-        user: m.User = m.User(
+        new_user: m.User = m.User(
             email=data.email,
-            username=username,
+            username=data.first_name,
             google_openid_key=data.uid,
             password=password,
         )
-        db.add(user)
+        db.add(new_user)
 
         try:
             db.commit()
         except SQLAlchemyError as e:
             log(log.INFO, "Error - [%s]", e)
             raise HTTPException(
-                status=status.HTTP_409_CONFLICT,
+                status_code=status.HTTP_409_CONFLICT,
                 detail="Error while saving creating a user",
             )
 
         log(
             log.INFO,
             "User [%s] has been created (via Google account))",
-            user.email,
+            new_user.email,
         )
+        user = new_user
 
-    user: m.User = m.User.authenticate(user.email, password, db)
+    auth_user: m.User | None = m.User.authenticate(user.email, password, db)
 
-    if not user:
+    if not auth_user:
         log(log.ERROR, "User [%s] was not authenticated", data.email)
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")
 
     access_token: str = create_access_token(user.id)
-    log(log.INFO, "Access token for User [%s] generated", user.email)
+    log(log.INFO, "Access token for User [%s] generated", auth_user.email)
     return s.Token(
         access_token=access_token,
         token_type="Bearer",

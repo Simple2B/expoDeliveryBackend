@@ -6,6 +6,7 @@ from .auth import router as auth_router
 from .category import category_router
 from .restaurant import restaurant_router
 from .whoami import whoami_router
+from .food import food_router
 
 # from .notify import notification_test_router
 
@@ -17,6 +18,7 @@ router.include_router(auth_router)
 router.include_router(category_router)
 router.include_router(restaurant_router)
 router.include_router(whoami_router)
+router.include_router(food_router)
 
 
 @router.get("/list-endpoints/")

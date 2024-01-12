@@ -7,3 +7,4 @@ from .restaurant import Restaurant, PanelRestaurant, RestaurantList, PanelRestau
 from .category import Category, Filter, CategoryList, FilterList
 from .rate import Rate
 from .whoami import WhoAmIOut
+from .food import Food, FoodList
