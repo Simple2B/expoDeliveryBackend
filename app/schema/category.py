@@ -21,6 +21,18 @@ class Filter(BaseModel):
     )
 
 
+class ChosenFilters(BaseModel):
+    categories: list[int]
+    min_price: float | None
+    max_price: float | None
+    min_calories: int | None
+    max_calories: int | None
+
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+
+
 class CategoryList(BaseModel):
     categories: list[Category]
 

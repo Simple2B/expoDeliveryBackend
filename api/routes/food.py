@@ -39,3 +39,15 @@ def get_foods(
     foods: Sequence[m.Food] = db.scalars(select(m.Food)).all()
 
     return s.FoodList(foods=[s.Food.model_validate(food) for food in foods])
+
+
+@food_router.get("/categories_filter", status_code=status.HTTP_200_OK, response_model=s.Food)
+def get_foods_by_categories(
+    data: s.JobIn,
+    db: Session = Depends(get_db),
+):
+    log(log.INFO, "Get all foods by categories")
+
+    foods: Sequence[m.Food] = db.scalars(select(m.Food)).all()
+
+    return s.FoodList(foods=[s.Food.model_validate(food) for food in foods])

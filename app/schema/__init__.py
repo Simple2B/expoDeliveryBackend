@@ -4,7 +4,7 @@ from .pagination import Pagination
 from .user import User, GoogleAuthUser
 from .token import Token, TokenData, Auth
 from .restaurant import Restaurant, PanelRestaurant, RestaurantList, PanelRestaurantList
-from .category import Category, Filter, CategoryList, FilterList
+from .category import Category, Filter, CategoryList, FilterList, ChosenFilters
 from .rate import Rate
 from .whoami import WhoAmIOut
 from .food import Food, FoodList
